@@ -61,14 +61,14 @@ public class Frame extends JFrame implements ActionListener{
 	public static void gameFrame() {
 		gameFrame = new JFrame("Kung-Fu Game");
 		gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		gameFrame.setSize(1920, 980);
+		gameFrame.setSize(1920, 1080);
 		gameFrame.setLayout(null);
 		gameFrame.setVisible(true);
 		gameFrame.setResizable(false);
 	}
 	
 	public static void optionsFrame() {
-		optionsFrame = new Frame("Kung-Fu Options");
+		optionsFrame = new JFrame("Kung-Fu Options");
 		optionsFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		optionsFrame.setSize(400, 400);
 		optionsFrame.setLayout(null);

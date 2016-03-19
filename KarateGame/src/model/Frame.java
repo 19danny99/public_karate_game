@@ -45,7 +45,7 @@ public class Frame extends JFrame implements ActionListener{
 	public static void gameFrame() {
 		gameFrame = new JFrame("Kung-Fu Game");
 		gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		gameFrame.setSize(1920, 1080);
+		gameFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		gameFrame.setLayout(null);
 		gameFrame.setVisible(true);
 		gameFrame.setResizable(false);

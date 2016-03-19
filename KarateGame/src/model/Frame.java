@@ -6,9 +6,6 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
-import org.newdawn.slick.Input;
-import org.newdawn.slick.command.InputProvider;
-
 public class Frame extends JFrame implements ActionListener{
 	private JButton start;
 	private JButton options;
@@ -36,19 +33,6 @@ public class Frame extends JFrame implements ActionListener{
 		add(exit);
 	}
 	
-	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == start) {
-			this.setVisible(false);
-			gameFrame();
-		}
-		if (e.getSource() == options) {
-			optionsFrame();
-		}
-		if (e.getSource() == exit) {
-			System.exit(0);
-		}
-	}
-	
 	public static void main(String[] args) {
 		frame = new Frame("Kung-Fu Menü");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -74,5 +58,20 @@ public class Frame extends JFrame implements ActionListener{
 		optionsFrame.setLayout(null);
 		optionsFrame.setVisible(true);
 		optionsFrame.setResizable(false);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == start) {
+			this.setVisible(false);
+			gameFrame();
+		}
+		if (e.getSource() == options) {
+			optionsFrame();
+		}
+		if (e.getSource() == exit) {
+			System.exit(0);
+		}
+		
 	}
 }

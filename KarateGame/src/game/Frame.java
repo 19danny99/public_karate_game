@@ -23,7 +23,7 @@ public class Frame extends JFrame {
 		addKeyListener(kb);
 		addMouseMotionListener(kb);
 		addMouseListener(kb);
-		setIconImage(new ImageIcon(getClass().getResource("/gfx/LinksSchlagend.png")).getImage());
+		setIconImage(new ImageIcon(getClass().getResource("/gfx/LinksStehend.png")).getImage());
 
 	}
 

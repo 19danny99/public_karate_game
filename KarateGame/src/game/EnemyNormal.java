@@ -9,12 +9,12 @@ public class EnemyNormal extends Enemy
 		if(left)
 		{
 			this.xpos = 1600;
-			look = ImageLoader.loadImage("LinksStehend");
+			look = ImageLoader.loadImage("GegnerLinksStehend");
 		}
 		else
 		{
 			this.xpos = -340;
-			look = ImageLoader.loadImage("RechtsStehend");
+			look = ImageLoader.loadImage("GegnerRechtsStehend");
 		}
 		
 	}

@@ -4,7 +4,12 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
+import com.sun.glass.events.KeyEvent;
+
 public class Menu {
+	private Soundplayer sound;
+	
+	
 	private BufferedImage background;
 	private BufferedImage title;
 	private Button[] buttons;
@@ -14,6 +19,9 @@ public class Menu {
 	public Menu() {
 		
 		xspeed = 50;
+		sound = new Soundplayer("sounds/menusound.wav");
+		
+		
 		
 		Font f = new Font("SansSerif", 0, 30);
 		buttons = new Button[3];
@@ -25,6 +33,8 @@ public class Menu {
 		
 		background = ImageLoader.loadImage("MenuBackground");
 		title = ImageLoader.loadImage("Title");
+	
+		
 	}
 
 	public void draw(Graphics g) {
@@ -47,12 +57,18 @@ public class Menu {
 		}
 		for (int i = 0; i < buttons.length; i++) {
 			if (buttons[i].update()) {
+				sound.play();
 				if (i == 0)
+				{
 					Frame.state = 1;
+				}
 				else if (i == 1)
 					;
 				else if (i == 2)
-					System.exit(0);
+					
+						System.exit(0);
+					
+					
 			}
 		}
 	}

@@ -14,6 +14,8 @@ public class Frame extends JFrame {
 	private Etage etage;
 	private Menu menu;
 	static int state;
+	private Soundplayer sound2 = new Soundplayer("sounds/videogamemusik.wav");
+	private Soundplayer sound3 = new Soundplayer("sounds/titlemusik.wav");
 
 	public Frame() {
 		super("Game");
@@ -58,10 +60,27 @@ public class Frame extends JFrame {
 	public void update(float tslf) {
 		switch (state) {
 		case 0:
+			if(sound2.isPlaying())
+			{
+				sound2.stop();
+			}
+			if(!sound3.isPlaying())
+			{
+				sound3.loop();
+			}
+			
 			menu.update(tslf);
 			break;
 
 		case 1:
+			if(sound3.isPlaying())
+			{
+				sound3.stop();
+			}
+			if(!sound2.isPlaying())
+			{
+				sound2.loop();
+			}
 			etage.update(tslf);
 			if (Keyboard.isKeyPressed(KeyEvent.VK_ESCAPE))
 				state = 0;

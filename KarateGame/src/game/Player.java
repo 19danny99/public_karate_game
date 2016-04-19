@@ -2,9 +2,16 @@ package game;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+
+
+
 import com.sun.glass.events.KeyEvent;
 
+
 public class Player {
+	private Soundplayer sound;
+	private Soundplayer sound1;
+	private Soundplayer sound2;
 	private float xpos;
 	private float ypos;
 	private int xspeed;
@@ -17,12 +24,17 @@ public class Player {
 	private boolean treten = false;
 	private boolean ducken = false;
 	
+	
 	public Player(int xpos, int ypos) {
 		this.xpos = xpos;
 		this.ypos = ypos;
 		
 		
 		look = ImageLoader.loadImage("LinksStehend");
+		
+		sound =  new Soundplayer("sounds/Punch.wav");
+		sound1 = new Soundplayer("sounds/schlagen.wav");
+		sound2 = new Soundplayer("sounds/schlagen2.wav");
 	}
 	
 	public String debugInfo()
@@ -73,13 +85,30 @@ public class Player {
 		}
 		else if (Keyboard.isKeyPressed(KeyEvent.VK_SPACE))
 		{
+			if(!sound.isPlaying())
+				sound.play();
 			image = left ? "LinksTretend" : "RechtsTretend";
+			
 			treten = true;
+	
 		}
 		else if (Keyboard.isKeyPressed(KeyEvent.VK_M)) 
 		{
+			if(!sound1.isPlaying() && !sound2.isPlaying())
+			{
+				if(Math.random() < 0.5)
+				{
+					sound1.play();
+				}
+				else
+				{
+					sound2.play();	
+				}
+			}
 			image = left ? "LinksSchlagend" : "RechtsSchlagend";
+				
 			schlagen = true;
+			
 		}
 		else 
 		{

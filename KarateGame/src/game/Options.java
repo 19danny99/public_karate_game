@@ -1,6 +1,5 @@
 package game;
 
-public class Options
-{
+public class Options{
 
 }

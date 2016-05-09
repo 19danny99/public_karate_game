@@ -12,6 +12,7 @@ public class Frame extends JFrame {
 	private static final long serialVersionUID = -6632969291746977124L;
 	private BufferStrategy strat;
 	private Etage etage;
+	private GameOver gameover;
 	private Menu menu;
 	static int state;
 	private Soundplayer sound2 = new Soundplayer("sounds/videogamemusik.wav");
@@ -21,6 +22,7 @@ public class Frame extends JFrame {
 		super("Game");
 		menu = new Menu();
 		etage = new Etage();
+		gameover = new GameOver();
 		Keyboard kb = new Keyboard();
 		addKeyListener(kb);
 		addMouseMotionListener(kb);
@@ -46,20 +48,22 @@ public class Frame extends JFrame {
 		case 0:
 			menu.draw(g);
 			break;
-
 		case 1:
 			etage.draw(g);
 			break;
-
+		case 2:
+			gameover.draw(g, etage.GetFinalScore());
+			break;
 		default:
 			break;
 		}
 
 	}
 
-	public void update(float tslf) {
+	public void update(float tslf, int laststate) {
 		switch (state) {
 		case 0:
+			etage = new Etage();
 			if(sound2.isPlaying())
 			{
 				sound2.stop();
@@ -68,10 +72,8 @@ public class Frame extends JFrame {
 			{
 				sound3.loop();
 			}
-			
-			menu.update(tslf);
+			menu.update(tslf, etage);
 			break;
-
 		case 1:
 			if(sound3.isPlaying())
 			{
@@ -84,8 +86,22 @@ public class Frame extends JFrame {
 			etage.update(tslf);
 			if (Keyboard.isKeyPressed(KeyEvent.VK_ESCAPE))
 				state = 0;
+			if (etage.GetGameOver())
+				state = 2;
 			break;
-
+		case 2:
+			if(sound2.isPlaying())
+			{
+				sound2.stop();
+			}
+			if(!sound3.isPlaying())
+			{
+				sound3.loop();
+			}
+			gameover.update(tslf);
+			if (Keyboard.isKeyPressed(KeyEvent.VK_ESCAPE))
+				state = 0;
+			break;
 		default:
 			break;
 		}

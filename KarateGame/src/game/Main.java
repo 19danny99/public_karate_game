@@ -21,11 +21,15 @@ public class Main{
 		frame.makestrat();
 		
 		long lastFrame = System.currentTimeMillis();
+		int laststate = -1;
+		try
+		{
 		while(true) {
+			laststate = frame.getState();
 			long thisFrame = System.currentTimeMillis();
 			float timeSinceLastFrame = (float) ((thisFrame - lastFrame)/1000.0);
 			lastFrame = thisFrame;
-			frame.update(timeSinceLastFrame);
+			frame.update(timeSinceLastFrame, laststate);
 			frame.repaint();
 			
 			try {
@@ -33,6 +37,10 @@ public class Main{
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
+		}
+		}catch (Exception ex)
+		{
+			ex.printStackTrace();
 		}
 	}
 }

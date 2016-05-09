@@ -19,4 +19,22 @@ public class EnemyNormal extends Enemy
 		
 	}
 	
+	public boolean CanGrab()
+	{
+		return true;
+	}
+	
+	public boolean Hit(boolean left, Player p)
+	{
+		if(left && speed > 0)
+		{
+			return xpos >= p.GetXPos()-150;
+		}
+		if(!left && speed < 0)
+		{
+			return xpos <= p.GetXPos()+150;
+		}
+		return false;
+	}
+	
 }

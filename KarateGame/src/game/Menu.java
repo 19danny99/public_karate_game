@@ -46,7 +46,7 @@ public class Menu {
 
 	}
 
-	public void update(float tslf) {
+	public void update(float tslf, Etage e) {
 		x += xspeed * tslf;
 		if (x > 0) {
 			x = 0;
@@ -61,12 +61,17 @@ public class Menu {
 				if (i == 0)
 				{
 					Frame.state = 1;
+					e.Start();
 				}
 				else if (i == 1)
-					;
+				{
+			
+				}
 				else if (i == 2)
-					
-						System.exit(0);
+				{
+					e.Stop();
+					System.exit(0);
+				}
 					
 					
 			}

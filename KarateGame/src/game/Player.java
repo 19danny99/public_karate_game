@@ -2,8 +2,7 @@ package game;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-
-
+import java.util.ArrayList;
 
 import com.sun.glass.events.KeyEvent;
 
@@ -23,6 +22,9 @@ public class Player {
 	private boolean schlagen = false;
 	private boolean treten = false;
 	private boolean ducken = false;
+	private float life = 100;
+	private int hold = 0;
+	private float score = 0;
 	
 	
 	public Player(int xpos, int ypos) {
@@ -35,6 +37,11 @@ public class Player {
 		sound =  new Soundplayer("sounds/Punch.wav");
 		sound1 = new Soundplayer("sounds/schlagen.wav");
 		sound2 = new Soundplayer("sounds/schlagen2.wav");
+	}
+	
+	public boolean GetCrouch()
+	{
+		return ducken;
 	}
 	
 	public String debugInfo()
@@ -50,16 +57,46 @@ public class Player {
 		
 		ret += " Punch: ";
 		ret += schlagen ? "yes" : "no";
+		ret += " life: " + life;
+		ret += " score: " + (int)score;
 		
 		
 		return ret;
+	}
+	
+	public float GetLife()
+	{
+		return life;
+	}
+	
+	public float GetXPos()
+	{
+		return xpos;
+	}
+	public int GetScore()
+	{
+		return (int)score;
+	}
+	public void setHold()
+	{
+		hold++;
+	}
+	
+	public void unsetHold()
+	{
+		hold--;
 	}
 	
 	public void draw(Graphics g) {
 		g.drawImage(look, (int) xpos, (int) ypos, null);
 	}
 	
-	public void update(float tslf) {
+	public void SetDamage(int damage)
+	{
+		life -= damage;
+	}
+	
+	public void update(float tslf, ArrayList<Enemy> e) {
 		xspeed = 0;
 		yspeed = 0;
 		String image;
@@ -75,12 +112,18 @@ public class Player {
 		}
 		else if (Keyboard.isKeyPressed(KeyEvent.VK_D) || Keyboard.isKeyPressed(KeyEvent.VK_RIGHT)) {
 			image = "RechtsLaufend";
+			if(hold==0)
+			{
 			xspeed = 200;
+			}
 			left = false;
 		}
 		else if (Keyboard.isKeyPressed(KeyEvent.VK_A) || Keyboard.isKeyPressed(KeyEvent.VK_LEFT)) {
 			image = "LinksLaufend";
+			if(hold==0)
+			{
 			xspeed = -200;
+			}
 			left = true;
 		}
 		else if (Keyboard.isKeyPressed(KeyEvent.VK_SPACE))
@@ -115,9 +158,39 @@ public class Player {
 			image = left ? "LinksStehend" : "RechtsStehend";
 		}
 		look = ImageLoader.loadImage(image);
+		if(treten || schlagen){
+			synchronized (e)
+			  {
+				for(int i = e.size() - 1; i >= 0; --i)
+				{
+					Enemy oneEnemy = e.get(i);
+					if(oneEnemy.Hit(left, this))
+					{
+						oneEnemy.Die(this);
+						score += 100;
+					}
+				}
+			  }
+		}
+		if( hold>0)
+		{
+			life -= (tslf * hold);
+			if(life < 0)
+			{
+				life = 0;
+			}
+			
+		}
+		else
+		{
+			score+= tslf*100;
+		}
 		
 		xpos += xspeed * tslf;
 		ypos += yspeed * tslf;
+		
+		width = look.getWidth();
+		height = look.getHeight();
 		
 		if (xpos < 0 ) xpos = 0;
 		if (xpos + width > Main.width) xpos = Main.width - width;

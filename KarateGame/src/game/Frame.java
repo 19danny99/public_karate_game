@@ -14,6 +14,7 @@ public class Frame extends JFrame {
 	private Etage etage;
 	private GameOver gameover;
 	private Menu menu;
+	private Options options;
 	static int state;
 	private Soundplayer sound2 = new Soundplayer("sounds/videogamemusik.wav");
 	private Soundplayer sound3 = new Soundplayer("sounds/titlemusik.wav");
@@ -23,6 +24,7 @@ public class Frame extends JFrame {
 		menu = new Menu();
 		etage = new Etage();
 		gameover = new GameOver();
+		options = new Options();
 		Keyboard kb = new Keyboard();
 		addKeyListener(kb);
 		addMouseMotionListener(kb);
@@ -54,6 +56,8 @@ public class Frame extends JFrame {
 		case 2:
 			gameover.draw(g, etage.GetFinalScore());
 			break;
+		case 3:
+			options.draw(g);
 		default:
 			break;
 		}
@@ -102,6 +106,10 @@ public class Frame extends JFrame {
 			if (Keyboard.isKeyPressed(KeyEvent.VK_ESCAPE))
 				state = 0;
 			break;
+		case 3:
+			if (Keyboard.isKeyPressed(KeyEvent.VK_ESCAPE))
+				state = 0;
+			options.update(tslf);
 		default:
 			break;
 		}

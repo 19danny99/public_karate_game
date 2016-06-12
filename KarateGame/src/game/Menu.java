@@ -4,8 +4,6 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
-import com.sun.glass.events.KeyEvent;
-
 public class Menu {
 	private Soundplayer sound;
 	private BufferedImage background;
@@ -56,14 +54,13 @@ public class Menu {
 				sound.play();
 				if (i == 0) {
 					Frame.state = 1;
-					e.Start();
+					e.start();
 				} else if (i == 1) {
 					Frame.state = 3;
 				} else if (i == 2) {
-					e.Stop();
+					e.stop();
 					System.exit(0);
 				}
-
 			}
 		}
 	}

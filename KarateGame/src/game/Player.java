@@ -14,7 +14,6 @@ public class Player {
 	private float xpos;
 	private float ypos;
 	private int xspeed;
-	private int yspeed;
 	private int width;
 	private int height;
 	private BufferedImage look;
@@ -39,7 +38,7 @@ public class Player {
 		sound2 = new Soundplayer("sounds/schlagen2.wav");
 	}
 	
-	public boolean GetCrouch()
+	public boolean getCrouch()
 	{
 		return ducken;
 	}
@@ -64,16 +63,16 @@ public class Player {
 		return ret;
 	}
 	
-	public float GetLife()
+	public float getLife()
 	{
 		return life;
 	}
 	
-	public float GetXPos()
+	public float getXPos()
 	{
 		return xpos;
 	}
-	public int GetScore()
+	public int getScore()
 	{
 		return (int)score;
 	}
@@ -91,14 +90,13 @@ public class Player {
 		g.drawImage(look, (int) xpos, (int) ypos, null);
 	}
 	
-	public void SetDamage(int damage)
+	public void setDamage(int damage)
 	{
 		life -= damage;
 	}
 	
 	public void update(float tslf, ArrayList<Enemy> e) {
 		xspeed = 0;
-		yspeed = 0;
 		String image;
 		
 		schlagen = false;
@@ -126,7 +124,7 @@ public class Player {
 			}
 			left = true;
 		}
-		else if (Keyboard.isKeyPressed(KeyEvent.VK_SPACE))
+		else if (Keyboard.isKeyPressed(KeyEvent.VK_Y) || Keyboard.isKeyPressed(KeyEvent.VK_N))
 		{
 			if(!sound.isPlaying())
 				sound.play();
@@ -135,7 +133,7 @@ public class Player {
 			treten = true;
 	
 		}
-		else if (Keyboard.isKeyPressed(KeyEvent.VK_M)) 
+		else if (Keyboard.isKeyPressed(KeyEvent.VK_M) || Keyboard.isKeyPressed(KeyEvent.VK_X)) 
 		{
 			if(!sound1.isPlaying() && !sound2.isPlaying())
 			{
@@ -164,9 +162,9 @@ public class Player {
 				for(int i = e.size() - 1; i >= 0; --i)
 				{
 					Enemy oneEnemy = e.get(i);
-					if(oneEnemy.Hit(left, this))
+					if(oneEnemy.hit(left, this))
 					{
-						oneEnemy.Die(this);
+						oneEnemy.die(this);
 						score += 100;
 					}
 				}
@@ -187,7 +185,6 @@ public class Player {
 		}
 		
 		xpos += xspeed * tslf;
-		ypos += yspeed * tslf;
 		
 		width = look.getWidth();
 		height = look.getHeight();

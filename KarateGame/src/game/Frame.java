@@ -54,7 +54,7 @@ public class Frame extends JFrame {
 			etage.draw(g);
 			break;
 		case 2:
-			gameover.draw(g, etage.GetFinalScore());
+			gameover.draw(g, etage.getFinalScore());
 			break;
 		case 3:
 			options.draw(g);
@@ -67,39 +67,34 @@ public class Frame extends JFrame {
 	public void update(float tslf, int laststate) {
 		switch (state) {
 		case 0:
+
 			etage = new Etage();
-			if(sound2.isPlaying())
-			{
+			if (sound2.isPlaying()) {
 				sound2.stop();
 			}
-			if(!sound3.isPlaying())
-			{
+			if (!sound3.isPlaying()) {
 				sound3.loop();
 			}
 			menu.update(tslf, etage);
 			break;
 		case 1:
-			if(sound3.isPlaying())
-			{
+			if (sound3.isPlaying()) {
 				sound3.stop();
 			}
-			if(!sound2.isPlaying())
-			{
+			if (!sound2.isPlaying()) {
 				sound2.loop();
 			}
 			etage.update(tslf);
 			if (Keyboard.isKeyPressed(KeyEvent.VK_ESCAPE))
 				state = 0;
-			if (etage.GetGameOver())
+			if (etage.getGameOver())
 				state = 2;
 			break;
 		case 2:
-			if(sound2.isPlaying())
-			{
+			if (sound2.isPlaying()) {
 				sound2.stop();
 			}
-			if(!sound3.isPlaying())
-			{
+			if (!sound3.isPlaying()) {
 				sound3.loop();
 			}
 			gameover.update(tslf);

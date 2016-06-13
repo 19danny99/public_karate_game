@@ -16,7 +16,7 @@ public class Enemy {
 		this.speed = left ? -speed : speed;
 	}
 	
-	public boolean IsDead()
+	public boolean isDead()
 	{
 		return dead;
 	}
@@ -27,22 +27,22 @@ public class Enemy {
 	
 	public void update(float tslf, Player p)
 	{
-		if(!hold || !CanGrab())
+		if(!hold || !canGrab())
 		{
 			xpos += speed * tslf;
 			hold = checkhold(p);
 			if(hold)
 			{
-				if(CanGrab())
+				if(canGrab())
 				{
-					p.SetDamage(GetExtraDamage());
+					p.setDamage(getExtraDamage());
 					p.setHold();
 				}
 				else
 				{
-					if(!p.GetCrouch())
+					if(!p.getCrouch())
 					{
-						p.SetDamage(GetExtraDamage());
+						p.setDamage(getExtraDamage());
 						dead = true;
 					}
 				}
@@ -50,12 +50,12 @@ public class Enemy {
 		}
 	}
 	
-	public int GetExtraDamage()
+	public int getExtraDamage()
 	{
 		return 0;
 	}
 	
-	public boolean CanGrab()
+	public boolean canGrab()
 	{
 		return false;
 	}
@@ -64,7 +64,7 @@ public class Enemy {
 	{
 		//if(speed > 0)
 		{
-			return ((xpos >= p.GetXPos()-100) && (xpos <= p.GetXPos()+100));
+			return ((xpos >= p.getXPos()-100) && (xpos <= p.getXPos()+100));
 		}
 		//else
 		//{
@@ -72,11 +72,11 @@ public class Enemy {
 		//}
 	}
 	
-	public boolean Hit(boolean left, Player p){
+	public boolean hit(boolean left, Player p){
 		return false;
 	}
 	
-	public void Die(Player p){
+	public void die(Player p){
 		dead = true;
 		if(hold)
 		{

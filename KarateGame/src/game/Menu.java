@@ -4,12 +4,8 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
-import com.sun.glass.events.KeyEvent;
-
 public class Menu {
 	private Soundplayer sound;
-	
-	
 	private BufferedImage background;
 	private BufferedImage title;
 	private Button[] buttons;
@@ -17,24 +13,22 @@ public class Menu {
 	private float xspeed;
 
 	public Menu() {
-		
+
 		xspeed = 50;
 		sound = new Soundplayer("sounds/menusound.wav");
-		
-		
-		
+
 		Font f = new Font("SansSerif", 0, 30);
 		buttons = new Button[3];
-		BufferedImage[] textures = {ImageLoader.loadImage("Button"), ImageLoader.loadImage("ButtonMaus"), ImageLoader.loadImage("ButtonGedrueckt")};
-		
+		BufferedImage[] textures = { ImageLoader.loadImage("Button"), ImageLoader.loadImage("ButtonMaus"),
+				ImageLoader.loadImage("ButtonGedrueckt") };
+
 		buttons[0] = new Button(200, "Start Game", textures, f);
 		buttons[1] = new Button(350, "Options", textures, f);
 		buttons[2] = new Button(500, "Exit", textures, f);
-		
+
 		background = ImageLoader.loadImage("MenuBackground");
 		title = ImageLoader.loadImage("Title");
-	
-		
+
 	}
 
 	public void draw(Graphics g) {
@@ -58,22 +52,15 @@ public class Menu {
 		for (int i = 0; i < buttons.length; i++) {
 			if (buttons[i].update()) {
 				sound.play();
-				if (i == 0)
-				{
+				if (i == 0) {
 					Frame.state = 1;
-					e.Start();
-				}
-				else if (i == 1)
-				{
-			
-				}
-				else if (i == 2)
-				{
-					e.Stop();
+					e.start();
+				} else if (i == 1) {
+					Frame.state = 3;
+				} else if (i == 2) {
+					e.stop();
 					System.exit(0);
 				}
-					
-					
 			}
 		}
 	}

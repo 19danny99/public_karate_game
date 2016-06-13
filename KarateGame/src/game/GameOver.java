@@ -1,17 +1,11 @@
 package game;
 
 import java.awt.Color;
+
 import java.awt.Font;
 import java.awt.Graphics;
 
 import java.awt.image.BufferedImage;
-import java.io.BufferedInputStream;
-import java.io.FileInputStream;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Timer;
-import java.util.TimerTask;;
-
 public class GameOver {
 	private BufferedImage background;
 	private Font gameOverFont;

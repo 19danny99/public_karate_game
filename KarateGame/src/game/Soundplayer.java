@@ -6,12 +6,12 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
 
 
-public class Soundplayer{
+public class Soundplayer {
 	
 	private Clip clip;
 	private FloatControl volume;
 
-	public Soundplayer(String path){
+	public Soundplayer(String path) {
 		AudioInputStream ais;
 		try
 			{

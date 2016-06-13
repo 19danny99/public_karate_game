@@ -8,7 +8,6 @@ import java.awt.image.BufferedImage;
 public class Button {
 	private int x;
 	private int y;
-	//private String center;
 	private Font font;
 	private java.awt.FontMetrics fm;
 	private String name;

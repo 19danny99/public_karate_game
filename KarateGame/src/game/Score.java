@@ -25,7 +25,7 @@ public class Score
 
 	public String getScore(Player player)
 	{
-		return "" + player.GetScore();
+		return "" + player.getscore();
 
 	}
 
@@ -76,7 +76,7 @@ public class Score
 		BufferedWriter bw = new BufferedWriter(new FileWriter("scores.csv"));
 		for (Player p : players)
 		{
-			bw.write(p.getName() + ";" + p.GetScore());
+			bw.write(p.getName() + ";" + p.getscore());
 		}
 		bw.close();
 	}

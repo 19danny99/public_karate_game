@@ -5,9 +5,6 @@ import java.awt.Font;
 import java.awt.Graphics;
 
 import java.awt.image.BufferedImage;
-import java.io.BufferedInputStream;
-import java.io.FileInputStream;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;;
@@ -74,14 +71,14 @@ public class Etage {
 	  }
 	}
 	
-	public void Stop()
+	public void stop()
 	{
 		timer.cancel();
 		enemies.clear();
 		player = null;
 	}
 	
-	public void Start()
+	public void start()
 	{
 		player = new Player(800, 450);
 		timer.schedule(new AddEnemyTask(), 1000);
@@ -95,14 +92,14 @@ public class Etage {
 		fpsFont = ImageLoader.loadFont("DIGITALE", 15);
 	}
 	
-	public boolean GetGameOver()
+	public boolean getGameOver()
 	{
 		return gameOver;
 	}
 	
-	public int GetFinalScore()
+	public int getFinalScore()
 	{
-		return player.GetScore();
+		return player.getScore();
 	}
 	
 	public void draw(Graphics g) {
@@ -112,19 +109,19 @@ public class Etage {
 		//g.drawString(player.debugInfo() ,20,20);
 		g.setFont(highscoreFont);
 		g.setColor(Color.white);
-		g.drawString(Integer.toString(player.GetScore()) , 10,120);
+		g.drawString(Integer.toString(player.getScore()) , 10,120);
 		g.setColor(Color.yellow);
 		synchronized (enemies)
 		{
 			enemies.forEach(e -> e.draw(g));
 		}
-		int currentLifeShow = (int)(player.GetLife() * 2);
+		int currentLifeShow = (int)(player.getLife() * 2);
 		g.fillRect(1550, 150 + (100 - currentLifeShow), 30, currentLifeShow);
 	}
 	
 	public void update(float tslf) {
 		player.update(tslf, enemies);
-		if(player.GetLife() <= 0)
+		if(player.getLife() <= 0)
 		{
 			timer.cancel();
 			gameOver=true;
@@ -136,7 +133,7 @@ public class Etage {
 			for(int i = enemies.size() - 1; i >= 0; --i)
 			{
 				Enemy e = enemies.get(i);
-				if(e.IsDead())
+				if(e.isDead())
 				{
 					enemies.remove(i);
 				}

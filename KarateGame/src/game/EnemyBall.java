@@ -19,7 +19,7 @@ public class EnemyBall extends Enemy
 		
 	}
 	
-	public int GetExtraDamage()
+	public int getExtraDamage()
 	{
 		return 10;
 	}

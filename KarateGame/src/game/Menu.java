@@ -11,7 +11,9 @@ public class Menu {
 	private Button[] buttons;
 	private float x;
 	private float xspeed;
-
+	/**
+	 * Konstruktor
+	 */
 	public Menu() {
 
 		xspeed = 50;
@@ -30,7 +32,10 @@ public class Menu {
 		title = ImageLoader.loadImage("Title");
 
 	}
-
+	/**
+	 * Diese Methode zeichnet das Menu
+	 * @param g
+	 */
 	public void draw(Graphics g) {
 		g.drawImage(background, 0, 0, Main.width, Main.height, (int) -x, 0, (int) -x + Main.width, Main.height, null);
 		g.drawImage(title, Main.width / 2 - title.getWidth() / 2, 30, null);
@@ -39,7 +44,11 @@ public class Menu {
 		}
 
 	}
-
+	/**
+	 * Diese Methode macht das bewegliches Menu
+	 * @param tslf
+	 * @param e
+	 */
 	public void update(float tslf, Etage e) {
 		x += xspeed * tslf;
 		if (x > 0) {

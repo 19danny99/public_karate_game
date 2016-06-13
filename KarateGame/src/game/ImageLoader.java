@@ -8,7 +8,11 @@ import java.io.InputStream;
 import javax.imageio.ImageIO;
 
 public class ImageLoader {
-
+/**
+ * Diese Methode ladet das Image
+ * @param name
+ * @return
+ */
 	public static BufferedImage loadImage(String name) {
 
 		try {
@@ -18,7 +22,12 @@ public class ImageLoader {
 		}
 		return null;
 	}
-	
+	/**
+	 * Diese Methode lädt font
+	 * @param name
+	 * @param size
+	 * @return
+	 */
 	public static Font loadFont(String name, int size) {
 
 		try {

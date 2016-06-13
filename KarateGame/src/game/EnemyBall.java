@@ -2,6 +2,11 @@ package game;
 
 public class EnemyBall extends Enemy
 {
+	/**
+	 * Konstruktor
+	 * @param left
+	 * @param speed
+	 */
 	public EnemyBall(boolean left, int speed) 
 	{
 		super(left, speed);
@@ -18,7 +23,9 @@ public class EnemyBall extends Enemy
 		}
 		
 	}
-	
+	/**
+	 * get-Methode
+	 */
 	public int getExtraDamage()
 	{
 		return 10;

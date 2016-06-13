@@ -12,24 +12,44 @@ public class Keyboard implements KeyListener, MouseMotionListener, MouseListener
 	private static int mouseX;
 	private static int mouseY;
 	private static int button;
-	
+	/**
+	 * get-Methode
+	 * @return
+	 */
 	public static int getMouseX() {
 		return mouseX;
 	}
+	/*
+	 *get-Methode 
+	 */
 	public static int getMouseY() {
 		return mouseY;
 	}
+	/**
+	 * get-Methode
+	 * @return
+	 */
 	public static int getButton() {
 		return button;
 	}
+	/**
+	 * Diese Methode prüft ob eine Taste gedrückt wurde
+	 * @param keycode
+	 * @return keys
+	 */
 	public static boolean isKeyPressed(int keycode) {
 		return keys[keycode];
 	}
+	/**
+	 * Diese Methode prüft ob eine Taste gedrückt wurde
+	 */
 	@Override
 	public void keyPressed(KeyEvent e) {
 		keys[e.getKeyCode()] = true;
 	}
-
+	/**
+	 * Diese Methode prüft ob der key losgelassen wurde
+	 */
 	@Override
 	public void keyReleased(KeyEvent e) {
 		keys[e.getKeyCode()] = false;
@@ -43,6 +63,9 @@ public class Keyboard implements KeyListener, MouseMotionListener, MouseListener
 	public void mouseDragged(MouseEvent e) {
 		
 	}
+	/**
+	 * Diese Methode prüft die Mauskoordinaten
+	 */
 	@Override
 	public void mouseMoved(MouseEvent e) {
 		mouseX = e.getX();
@@ -60,10 +83,16 @@ public class Keyboard implements KeyListener, MouseMotionListener, MouseListener
 	public void mouseExited(MouseEvent e) {
 		
 	}
+	/**
+	 * Diese Methode schaut ob die Maus gedrückt wurde
+	 */
 	@Override
 	public void mousePressed(MouseEvent e) {
 		button = e.getButton();
 	}
+	/**
+	 * Diese Methode schaut ob die Maus losgelassen wurde
+	 */
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		button = -1;

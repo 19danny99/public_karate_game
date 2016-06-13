@@ -6,7 +6,10 @@ public class Main{
 	
 	static int width = 1600;
 	static int height = 900;
-	
+	/**
+	 * Diese Methode erzeugt das Frame
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		
 		Frame frame = new Frame();

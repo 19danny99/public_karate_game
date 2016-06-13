@@ -24,6 +24,9 @@ public class Etage {
 	
 	class AddEnemyTask extends TimerTask
 	{
+		/**
+		 * Konstruktor
+		 */
 	  @Override public void run()
 	  {
 		  double rand = Math.random();
@@ -70,20 +73,26 @@ public class Etage {
 		  timer.schedule(new AddEnemyTask(), newDelay);
 	  }
 	}
-	
+	/**
+	 * Diese Methode setzt timer enemies und player zurück
+	 */
 	public void stop()
 	{
 		timer.cancel();
 		enemies.clear();
 		player = null;
 	}
-	
+	/**
+	 * Diese methode startet das Spiel
+	 */
 	public void start()
 	{
 		player = new Player(800, 450);
 		timer.schedule(new AddEnemyTask(), 1000);
 	}
-	
+	/**
+	 * Diese Methode ladet den background 
+	 */
 	public Etage() {
 		//player = new Player(800, 450);
 		background = ImageLoader.loadImage("Background");
@@ -91,17 +100,26 @@ public class Etage {
 		highscoreFont = ImageLoader.loadFont("DIGITALE", 30);
 		fpsFont = ImageLoader.loadFont("DIGITALE", 15);
 	}
-	
+	/**
+	 * get-Methode
+	 * @return gameOver
+	 */
 	public boolean getGameOver()
 	{
 		return gameOver;
 	}
-	
+	/**
+	 * get-Methode
+	 * @return score
+	 */
 	public int getFinalScore()
 	{
 		return player.getScore();
 	}
-	
+	/**
+	 * Diese Methode zeichnet die Etage
+	 * @param g
+	 */
 	public void draw(Graphics g) {
 		g.drawImage(background, 0, 0, null);
 		player.draw(g);
@@ -118,7 +136,10 @@ public class Etage {
 		int currentLifeShow = (int)(player.getLife() * 2);
 		g.fillRect(1550, 150 + (100 - currentLifeShow), 30, currentLifeShow);
 	}
-	
+	/**
+	 * Diese Methode updated die Etage
+	 * @param tslf
+	 */
 	public void update(float tslf) {
 		player.update(tslf, enemies);
 		if(player.getLife() <= 0)

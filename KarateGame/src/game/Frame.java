@@ -18,7 +18,9 @@ public class Frame extends JFrame {
 	static int state;
 	private Soundplayer sound2 = new Soundplayer("sounds/videogamemusik.wav");
 	private Soundplayer sound3 = new Soundplayer("sounds/titlemusik.wav");
-
+	/**
+	 * Konstruktor
+	 */
 	public Frame() {
 		super("Game");
 		menu = new Menu();
@@ -32,19 +34,26 @@ public class Frame extends JFrame {
 		setIconImage(new ImageIcon(getClass().getResource("/gfx/LinksStehend.png")).getImage());
 
 	}
-
+	/**
+	 * Diese Methode 
+	 */
 	public void makestrat() {
 		createBufferStrategy(2);
 		strat = getBufferStrategy();
 	}
-
+	/**
+	 * Diese Methode zeichnet alles neu
+	 */
 	public void repaint() {
 		Graphics g = strat.getDrawGraphics();
 		draw(g);
 		g.dispose();
 		strat.show();
 	}
-
+	/**
+	 * Diese methode zeichnet einer der untenstehenden cases
+	 * @param g
+	 */
 	public void draw(Graphics g) {
 		switch (state) {
 		case 0:
@@ -63,7 +72,11 @@ public class Frame extends JFrame {
 		}
 
 	}
-
+	/**
+	 * Diese Methode macht die sounds
+	 * @param tslf
+	 * @param laststate
+	 */
 	public void update(float tslf, int laststate) {
 		switch (state) {
 		case 0:

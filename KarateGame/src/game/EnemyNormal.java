@@ -2,6 +2,11 @@ package game;
 
 public class EnemyNormal extends Enemy
 {
+	/**
+	 * Konstruktor
+	 * @param left
+	 * @param speed
+	 */
 	public EnemyNormal(boolean left, int speed) 
 	{
 		super(left, speed);
@@ -18,12 +23,16 @@ public class EnemyNormal extends Enemy
 		}
 		
 	}
-	
+	/**
+	 * Diese Methode beschreibt ob der gegner den Player grabben kann
+	 */
 	public boolean canGrab()
 	{
 		return true;
 	}
-	
+	/**
+	 * Diese Methode beschreibt 
+	 */
 	public boolean hit(boolean left, Player p)
 	{
 		if(left && speed > 0)

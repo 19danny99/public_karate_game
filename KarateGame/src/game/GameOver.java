@@ -13,13 +13,19 @@ public class GameOver {
 	
 	
 	
-	
+	/**
+	 * Konstruktor
+	 */
 	public GameOver() {
 		background = ImageLoader.loadImage("Background");
 		highscoreFont = ImageLoader.loadFont("DIGITALE", 30);
 		gameOverFont = ImageLoader.loadFont("DIGITALE", 60);
 	}
-	
+	/**
+	 * 	Diese Methode zeichnet den GameOver screen
+	 * @param g
+	 * @param score
+	 */
 	public void draw(Graphics g, int score) {
 		g.drawImage(background, 0, 0, null);
 		g.setColor(Color.red);

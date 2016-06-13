@@ -12,7 +12,9 @@ public class Options {
 	private Button back;
 	private float x;
 	private float xspeed;
-
+	/**
+	 * Konstruktor
+	 */
 	public Options() {
 		xspeed = 50;
 		sound = new Soundplayer("sounds/menusound.wav");
@@ -28,14 +30,20 @@ public class Options {
 		title = ImageLoader.loadImage("Title");
 		controls = ImageLoader.loadImage("Controls");
 	}
-
+	/**
+	 * Diese Methode zeichnet die Options
+	 * @param g
+	 */
 	public void draw(Graphics g) {
 		g.drawImage(background, 0, 0, Main.width, Main.height, (int) -x, 0, (int) -x + Main.width, Main.height, null);
 		g.drawImage(title, Main.width / 2 - title.getWidth() / 2, 30, null);
 		g.drawImage(controls, Main.width / 2 - title.getWidth() / 2, 250, null);
 		back.draw(g);
 	}
-
+	/**
+	 * Diese Methode macht die Options beweglich
+	 * @param tslf
+	 */
 	public void update(float tslf) {
 		x += xspeed * tslf;
 		if (x > 0) {

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import com.sun.glass.events.KeyEvent;
 
 
-public class Player implements Comparable<Player>{
+public class Player {
 	private Soundplayer sound;
 	private Soundplayer sound1;
 	private Soundplayer sound2;
@@ -24,8 +24,12 @@ public class Player implements Comparable<Player>{
 	private float life = 100;
 	private int hold = 0;
 	private float score = 0;
-	String name;
 	
+	/**
+	 * Konstruktor
+	 * @param xpos
+	 * @param ypos
+	 */
 	public Player(int xpos, int ypos) {
 		this.xpos = xpos;
 		this.ypos = ypos;
@@ -37,24 +41,20 @@ public class Player implements Comparable<Player>{
 		sound1 = new Soundplayer("sounds/schlagen.wav");
 		sound2 = new Soundplayer("sounds/schlagen2.wav");
 	}
-	
-	public Player(String name, String score) {
-		this.name = name;
-		score = Float.toString(this.score);
-	}
-	
-	public void setName(String name) {
-		this.name = name;
-	}
-	
-	public String getName(){
-		return name;
-	}
+
+	/**
+	 * getCrouch
+	 * @return ducken
+	 */
 	public boolean getCrouch()
 	{
 		return ducken;
 	}
 	
+	/**
+	 * debugInfo
+	 * @return ret
+	 */
 	public String debugInfo()
 	{
 		String ret = "";
@@ -74,42 +74,70 @@ public class Player implements Comparable<Player>{
 		
 		return ret;
 	}
-	
+	/**
+	 * getLife
+	 * @return life
+	 */
 	public float getLife()
 	{
 		return life;
 	}
 	
+	/**
+	 * getXPos
+	 * @return xpos
+	 */
 	public float getXPos()
 	{
 		return xpos;
 	}
+	/**
+	 * getScore
+	 * @return score
+	 */
 	public int getScore()
 	{
 		return (int)score;
 	}
-	public float getscore() {
-		return score;
-	}
+	
+	/**
+	 * setHold
+	 */
 	public void setHold()
 	{
 		hold++;
 	}
 	
+	/**
+	 * unsetHold
+	 */
 	public void unsetHold()
 	{
 		hold--;
 	}
 	
+	/**
+	 * draw Player
+	 * @param g
+	 */
 	public void draw(Graphics g) {
 		g.drawImage(look, (int) xpos, (int) ypos, null);
 	}
 	
+	/**
+	 * setDamage
+	 * @param damage
+	 */
 	public void setDamage(int damage)
 	{
 		life -= damage;
 	}
 	
+	/**
+	 * keys implementiert
+	 * @param tslf
+	 * @param e
+	 */
 	public void update(float tslf, ArrayList<Enemy> e) {
 		xspeed = 0;
 		String image;
@@ -208,40 +236,5 @@ public class Player implements Comparable<Player>{
 		if (xpos + width > Main.width) xpos = Main.width - width;
 		if (ypos < 0 ) ypos = 0;
 		if (ypos + height > Main.height) ypos = Main.height - height;
-	}
-
-	@Override
-	public int compareTo(Player p)
-	{
-		// TODO Auto-generated method stub
-		return getName().compareTo(p.getName());
-	}
-
-	@Override
-	public int hashCode()
-	{
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj)
-	{
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Player other = (Player) obj;
-		if (name == null)
-		{
-			if (other.name != null)
-				return false;
-		} else if (!name.equals(other.name))
-			return false;
-		return true;
 	}
 }

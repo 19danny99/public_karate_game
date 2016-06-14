@@ -74,7 +74,7 @@ public class Etage {
 	  }
 	}
 	/**
-	 * Diese Methode setzt timer enemies und player zurück
+	 * Diese Methode setzt timer enemies und player zurï¿½ck
 	 */
 	public void stop()
 	{
